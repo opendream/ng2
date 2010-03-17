@@ -1,0 +1,18 @@
+1. Copy plugins to /wp-content/plugins.
+2. Create new template for browsepicture page
+  - Go to your current directory theme(/wp-content/themes/THEME_NAME).
+  - Copy page.php and rename it to browsepicture.php or something as you wish.
+  - Named your new template at the top of script(within comment)
+    ex. <?php
+        /*
+        Template Name: Browse pictures
+        */
+  - Copy the below script to section where you want to display
+    script: <?php get_browse_content() ?>
+  - Go to adminstration page, add new page, set title as you want, and select template which you just created.
+
+######## 
+# Note #
+########
+If you use default theme, I have already made it. You can copy it from /wp-content/plugins/nextgen-gallery/themes to /wp-content/, replace all files.
+

@@ -1,0 +1,3 @@
+$(function() {
+	$('.ngg-galleryoverview a').lightBox({fixedNavigation:true});
+});
