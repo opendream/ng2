@@ -38,19 +38,25 @@ Follow variables are useable :
 	<?php foreach ( $images as $image ) : ?>
 	
 	<?php
-	unset($image->meta_data[0]);
-	$includes = array('aperture', 'camera', 'iso', 'shutter_speed', 'title', 'keywords');
-	$meta = array("&lt;tr&gt;&lt;th&gt;Key&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;");
-	foreach ($image->meta_data as $key => $value) {
-	  if (!in_array($key, $includes)) continue;
-	  $meta[] = "&lt;tr&gt;&lt;th align='left'&gt;". ucfirst(str_replace('_', '', $key)) ."&lt;/td&gt;&lt;td&gt;$value&lt;/td&gt;&lt;/tr&gt;";
-	}
-	$meta = "&lt;table&gt;". implode("\n", $meta) .'&lt;/table&gt;';
+  // Add metadata to shutter effect by Rutz
+  $ngg_options = get_option('ngg_options');
+  $effect = $ngg_options['thumbEffect'];
+  if ($effect == 'shutter') {
+    unset($image->meta_data[0]);
+    $includes = array('aperture', 'camera', 'iso', 'shutter_speed', 'title', 'keywords');
+    $meta = array("&lt;tr&gt;&lt;th&gt;Key&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;");
+    foreach ($image->meta_data as $key => $value) {
+      if (!in_array($key, $includes)) continue;
+      $meta[] = "&lt;tr&gt;&lt;th align='left'&gt;". ucfirst(str_replace('_', '', $key)) ."&lt;/td&gt;&lt;td&gt;$value&lt;/td&gt;&lt;/tr&gt;";
+    }
+    $meta = "&lt;table&gt;". implode("\n", $meta) .'&lt;/table&gt;';
+    $image->description = $image->description .'::meta::'. $meta;
+  }
 	?>
 
 	<div id="ngg-image-<?php echo $image->pid ?>" class="ngg-gallery-thumbnail-box" <?php echo $image->style ?> >
 		<div class="ngg-gallery-thumbnail" >
-			<a href="<?php echo $image->imageURL ?>" title="<?php echo $image->description .'::meta::'. $meta ?>" <?php echo $image->thumbcode ?> >
+			<a href="<?php echo $image->imageURL ?>" title="<?php echo $image->description ?>" <?php echo $image->thumbcode ?> >
 				<?php if ( !$image->hidden ) { ?>
 				<img title="<?php echo $image->alttext ?>" alt="<?php echo $image->alttext ?>" src="<?php echo $image->thumbnailURL ?>" <?php echo $image->size ?> />
 				<?php } ?>

@@ -1,7 +1,7 @@
 1. Copy plugins to /wp-content/plugins.
 2. Create new template for browsepicture page
   - Go to your current directory theme(/wp-content/themes/THEME_NAME).
-  - Copy page.php and rename it to browsepicture.php or something as you wish.
+  - Copy page.php and rename it to browse-pictures.php.
   - Named your new template at the top of script(within comment)
     ex. <?php
         /*
