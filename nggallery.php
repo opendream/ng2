@@ -192,7 +192,7 @@ class nggLoader {
 		global $wpdb;
 		
 		// add database pointer 
-		$wpdb->nggpictures					= $wpdb->prefix . 'ngg_pictures';
+		$wpdb->nggpictures				= $wpdb->prefix . 'ngg_pictures';
 		$wpdb->nggallery					= $wpdb->prefix . 'ngg_gallery';
 		$wpdb->nggalbum						= $wpdb->prefix . 'ngg_album';
 		$wpdb->nggmetadata        = $wpdb->prefix . 'ngg_metadata';
@@ -298,7 +298,6 @@ class nggLoader {
 
 		}
 		
-		// Add by Rutz
 		if ($this->options['thumbEffect'] == 'lightbox') {
 		  wp_register_script('lightbox', NGGALLERY_URLPATH .'lightbox/jquery.lightbox-0.5.pack.js', false, '0.5');
 		  wp_register_script('lightbox_run', NGGALLERY_URLPATH .'lightbox/lightbox.js', array('lightbox'), '0.1');

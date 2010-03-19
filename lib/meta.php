@@ -226,8 +226,6 @@ class nggMeta{
 			$meta = array();
 			foreach ($iptcTags as $key => $value) {
 				if ($this->iptc_data[$key])
-					//$meta[$value] = trim(utf8_encode(implode(", ", $this->iptc_data[$key])));
-					// Remove utf8_encode by Rutz
 					$meta[$value] = trim(implode(", ", $this->iptc_data[$key]));
 			}
 			$this->iptc_array = $meta;

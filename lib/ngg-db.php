@@ -493,8 +493,6 @@ class nggdb {
 		}
 		
 		$imageID = (int) $wpdb->insert_id;
-		
-		// Add metadata to ngg_metadata for search by Rutz
 		$meta_data = unserialize($meta_data);
 		foreach ($meta_data as $key => $value) {
 		  if ( false === $wpdb->query( $wpdb->prepare("INSERT INTO $wpdb->nggmetadata (pid, meta_key, meta_value)   VALUES (%d, '%s', '%s')", $imageID, $key, $value) ) ) {
@@ -768,7 +766,6 @@ class nggdb {
 		
         $result = $wpdb->query( $wpdb->prepare("UPDATE $wpdb->nggpictures SET meta_data = %s WHERE pid = %d", serialize($meta), $id) );
         
-        // Update new metadata Add by Rutz
         unset($meta[0]);
         if (count($meta)) {
           foreach ($meta as $key => $value) {
@@ -777,8 +774,7 @@ class nggdb {
               foreach ($value as $k => $v) {
                 $wpdb->query( $wpdb->prepare("INSERT INTO $wpdb->nggmetadata (gid, pid, meta_key, meta_value) VALUES (%d, %d, '%s', '%s') ON DUPLICATE KEY UPDATE meta_value = '%s'", $gid, $id, trim($k), trim($v), trim($v)) );
               }
-            }
-            else {
+            } else {
               $wpdb->query( $wpdb->prepare("INSERT INTO $wpdb->nggmetadata (gid, pid, meta_key, meta_value) VALUES (%d, %d, '%s', '%s') ON DUPLICATE KEY UPDATE meta_value = '%s'", $gid, $id, trim($key), trim($value), trim($value)) );
             }
           }

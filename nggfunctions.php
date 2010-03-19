@@ -1045,7 +1045,7 @@ function nggTagCloud($args ='', $template = '') {
 }
 
 /**
- * Browse pictures functions Add by Rutz
+ * Browse pictures functions.
  */
 function get_browse_meta() {
   global $wpdb;
@@ -1170,8 +1170,6 @@ function get_browse_results() {
       );
       foreach ($keys as $key) {
         $query = "SELECT pid, meta_value, COUNT(meta_value) AS count FROM $wpdb->nggmetadata WHERE meta_key = '{$key}' AND pid IN (". implode(', ', $pids) .") AND meta_value <> '' GROUP BY meta_value ORDER BY meta_value ASC";
-        //$query = "SELECT pid, meta_key, meta_value, COUNT(meta_value) AS count FROM $wpdb->nggmetadata WHERE pid IN (". implode(', ', $pids) .") GROUP BY meta_value HAVING meta_key = '{$key}' ORDER BY meta_value ASC";
-        //$query = "SELECT pid, meta_key, meta_value, COUNT(meta_value) AS count FROM $wpdb->nggmetadata WHERE meta_key = '{$key}' GROUP BY meta_value HAVING pid IN (". implode(', ', $pids) .") ORDER BY meta_value ASC";
 
         $result = $wpdb->get_results( $query );
         $output .= '<ul>';
@@ -1183,16 +1181,15 @@ function get_browse_results() {
             $punc = $_GET['page_id'] ? '&' : '?';
             $output .= '<li><a href="'. get_permalink(get_browse_pageid()) . $punc . 'search='. $_GET['search'] .'&key='. $key .'&value='. $value .'">'. $_key .'</a> ('. parse_unit($meta->count, 'picture') .')</li>';
           }
-        }
-        else { $output .= '<li>None</li>'; }
+        } else { $output .= '<li>None</li>'; }
         $output .= '</ul>';
         
       }
     }
-    if (count($_pids)) $pids = $_pids; 
+    if (count($_pids))
+      $pids = $_pids; 
     $output .= nggCreateGallery($images, null, $template);
-  }
-  else {
+  } else {
     $output .= isset($_GET['search']) ? 'No search result.' : 'No pictures available.';
   }
   return $output;

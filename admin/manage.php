@@ -82,7 +82,6 @@ class nggManageGallery {
 	
 			$delete_pic = $wpdb->query("DELETE FROM $wpdb->nggpictures WHERE galleryid = $this->gid");
 			$delete_galllery = $wpdb->query("DELETE FROM $wpdb->nggallery WHERE gid = $this->gid");
-			// Add by Rutz
 			$delete_meta = $wpdb->query("DELETE FROM $wpdb->nggmetadata WHERE gid = $this->gid");
 			
 			if($delete_galllery)
@@ -102,7 +101,6 @@ class nggManageGallery {
 					@unlink($image->thumbPath);	
 				} 
 				$delete_pic = $wpdb->query("DELETE FROM $wpdb->nggpictures WHERE pid = $image->pid");
-				// Add by Rutz
 				$delete_meta = $wpdb->query("DELETE FROM {$wpdb->prefix}ngg_metadata WHERE pid = $image->pid");
 			}
 			if($delete_pic)

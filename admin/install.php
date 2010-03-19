@@ -47,12 +47,11 @@ function nggallery_install () {
 			$charset_collate .= " COLLATE $wpdb->collate";
 	}
 		
-   	$nggpictures					= $wpdb->prefix . 'ngg_pictures';
-	$nggallery						= $wpdb->prefix . 'ngg_gallery';
+  $nggpictures				= $wpdb->prefix . 'ngg_pictures';
+	$nggallery					= $wpdb->prefix . 'ngg_gallery';
 	$nggalbum						= $wpdb->prefix . 'ngg_album';
 	$nggmetadata        = $wpdb->prefix . 'ngg_metadata';
 	
-	// Add by Rutz
   if ($wpdb->get_var("show tables like '$nggmetadata'") != $nggmetadata) {
     $sql = "CREATE TABLE " . $nggmetadata ." (
     gid BIGINT(20) NOT NULL,

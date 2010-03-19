@@ -123,7 +123,7 @@ shutterReloaded = {
 			nextlink = '';
 		}
 		
-		// Extract data by Rutz
+		// Extract data.
 		var tmp = shutterLinks[ln].title.split("::meta::");
 		var shTitle = tmp[0];
 		if (shTitle.replace(" ", "") == '') shTitle = 'No description';// == '' ? 'No description' : $tmp[0];
@@ -133,7 +133,7 @@ shutterReloaded = {
 
 		NavBar = '<div id="shTitle"><div id="shPrev">' + prevlink + '</div><div id="shNext">' + nextlink + '</div><div id="shName">' + shTitle + '</div>' + imgNum + '</div>';
 		
-		// Add Sidebar by Rutz
+		// Add Sidebar.
 		MetaBar = '<div class="shMeta">' + shMeta + '</div>';
 
 		D.innerHTML = '<div id="shWrap" style="width: ' + 1000 +'px; text-align: center; margin: 0 auto;"><img src="'+shutterLinks[ln].link+'" id="shTopImg" title="' + t.msgClose + '" onload="shutterReloaded.showImg();" onclick="shutterReloaded.hideShutter();" />' + NavBar + MetaBar +'</div>';
@@ -213,7 +213,7 @@ shutterReloaded = {
 			if ( TI.height > shHeight ) {
 				TI.width = TI.width * (shHeight / TI.height);
 				TI.height = shHeight;
-				TI.height = TI.height / 1.4; // Resize by Rutz
+				TI.height = TI.height / 1.4; // Resize
 				resized = 1;
 			}
 			if ( TI.width > (t.wWidth - 16) ) {
@@ -221,7 +221,7 @@ shutterReloaded = {
 				TI.width = t.wWidth - 16;
 				resized = 1;
 			}
-			TI.width = TI.width / 1.4; // Resize by Rutz
+			TI.width = TI.width / 1.4; // Resize
 			T.style.width = (TI.width - 4) + 'px';
 		}
 
